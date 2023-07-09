@@ -1,6 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+"""
+Commentaires :
+* Si erreur "qt.qpa.plugin: Could not find the Qt platform plugin "wayland" in "" " : taper dans le terminal
+"export QT_QPA_PLATFORM=xcb".
+"""
+
 
 #Libraries
 from moviepy.editor import VideoFileClip
@@ -28,7 +34,7 @@ def extract_audio(video_file, audio_file):
 def vad(audio_file):
     wav = read_audio(audio_file, sampling_rate=16000)
     speech_timestamps = get_speech_timestamps(wav, model, sampling_rate=16000, visualize_probs=True, return_seconds=True)
-    print(speech_timestamps)
+    print(speech_timestamps)    #renvoie une liste de dictionnaires (champs 'start' et 'end' : instants en secondes des plages
 
 
 #Main function
