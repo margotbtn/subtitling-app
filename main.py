@@ -8,20 +8,25 @@ Commentaires :
 """
 
 
-#Libraries
+#Packages
 from moviepy.editor import VideoFileClip
 import os
 import torch
+import speech_recognition as sr
+import pprint
 
 
-#Configuration
+#Configurations
 torch.set_num_threads(1)
 model, utils = torch.hub.load(repo_or_dir='snakers4/silero-vad', model='silero_vad')
 (get_speech_timestamps, _, read_audio, _, _) = utils
 
+r = sr.Recognizer()
+
 
 #Variables
-video_file = "/home/margot/Portfolio/subtitling-app/Test/Dune Official Trailer.mp4"
+video_file_movie = "/home/margot/Portfolio/subtitling-app/Test/Dune.mp4"
+video_file_speech = "/home/margot/Portfolio/subtitling-app/Test/EmmaWatson.mp4"
 
 
 #Functions
@@ -34,7 +39,23 @@ def extract_audio(video_file, audio_file):
 def vad(audio_file):
     wav = read_audio(audio_file, sampling_rate=16000)
     speech_timestamps = get_speech_timestamps(wav, model, sampling_rate=16000, visualize_probs=True, return_seconds=True)
-    print(speech_timestamps)    #renvoie une liste de dictionnaires (champs 'start' et 'end' : instants en secondes des plages
+    return speech_timestamps    #renvoie une liste de dictionnaires (champs 'start' et 'end' : instants en secondes des plages
+
+def asr(audio_file, periods):
+    file = sr.AudioFile(audio_file)
+    with file as source:
+        r.adjust_for_ambient_noise(source, duration=0.5)
+        for i in range(len(periods)):
+            offset = min(periods[i]['start'] - 0.5, 0)
+            duration = periods[i]['end'] - periods[i]['start'] + 1
+            audio = r.record(source, offset=offset, duration=duration)
+            try:
+                text = r.recognize_google(audio)    #paramètre show_all=True pour renvoyer JSON string avec toutes les possibilités
+            except:
+                text = None
+            periods[i]['text'] = text
+    pprint.pprint(periods)
+    return periods
 
 
 #Main function
@@ -44,9 +65,10 @@ def main(video_file):
     str_file = base_path + ".str"
 
     extract_audio(video_file, audio_file)
-    vad(audio_file)
+    periods = vad(audio_file)
+    asr(audio_file, periods)
 
     os.remove(audio_file)
 
 
-main(video_file)
+main(video_file_speech)
