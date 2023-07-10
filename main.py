@@ -39,6 +39,17 @@ def extract_audio(video_file, audio_file):
 def vad(audio_file):
     wav = read_audio(audio_file, sampling_rate=16000)
     speech_timestamps = get_speech_timestamps(wav, model, sampling_rate=16000, visualize_probs=True, return_seconds=True)
+
+    if len(speech_timestamps) >= 2:
+        cur, next, last = 0, 1, len(speech_timestamps)-1
+        while speech_timestamps[cur]['end'] < speech_timestamps[last]['end']:
+            if speech_timestamps[next]['start'] - speech_timestamps[cur]['end'] < 1:
+                speech_timestamps[cur]['end'] = speech_timestamps[next]['end']
+                del speech_timestamps[next]
+                last -= 1
+            else:
+                cur += 1
+                next += 1
     return speech_timestamps    #renvoie une liste de dictionnaires (champs 'start' et 'end' : instants en secondes des plages
 
 def asr(audio_file, periods):
