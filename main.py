@@ -3,6 +3,7 @@
 
 """
 Commentaires :
+
 * Si erreur "qt.qpa.plugin: Could not find the Qt platform plugin "wayland" in "" " : taper dans le terminal
 "export QT_QPA_PLATFORM=xcb".
 """
@@ -25,16 +26,24 @@ r = sr.Recognizer()
 
 
 #Variables
-video_file_movie = "/home/margot/Portfolio/subtitling-app/Test/Dune.mp4"
-video_file_speech = "/home/margot/Portfolio/subtitling-app/Test/EmmaWatson.mp4"
+video_file = "/home/margot/Portfolio/subtitling-app/Test/Dune.mp4"    #Dune ou EmmaWatson
 
 
-#Functions
+
+#---------------------------------------- Functions -----------------------------------------
+
 def extract_audio(video_file, audio_file):
     video = VideoFileClip(video_file)
     audio = video.audio
     audio.write_audiofile(audio_file)
     video.close()
+
+def format_time(seconds):
+    hours = int(seconds / 3600)
+    minutes = int((seconds % 3600) / 60)
+    seconds = int(seconds % 60)
+    milliseconds = int((seconds % 1) * 1000)
+    return f"{hours:02d}:{minutes:02d}:{seconds:02d},{milliseconds:03d}"
 
 def vad(audio_file):
     wav = read_audio(audio_file, sampling_rate=16000)
@@ -63,23 +72,43 @@ def asr(audio_file, periods):
             try:
                 text = r.recognize_google(audio)    #paramètre show_all=True pour renvoyer JSON string avec toutes les possibilités
             except:
-                text = None
+                text = "[ASR not working]"
             periods[i]['text'] = text
-    pprint.pprint(periods)
+    #pprint.pprint(periods)
     return periods
 
+def srt(subtitles, srt_file):
+    srt_content = ""
+    for i, sub in enumerate(subtitles, start=1):
+        start = format_time(sub['start'])
+        end = format_time(sub['end'])
+        text = sub['text']
+        srt_content += f"{i}\n{start} --> {end}\n{text}\n\n"
+    with open(srt_file, 'w', encoding='utf-8') as f:
+        f.write(srt_content)
 
-#Main function
+
+#---------------------------------------- Main function -----------------------------------------
+
 def main(video_file):
     base_path = os.path.splitext(video_file)[0]
     audio_file = base_path + ".wav"
-    str_file = base_path + ".str"
+    srt_file = base_path + ".srt"
 
     extract_audio(video_file, audio_file)
+
+    print("Processing VAD.")
     periods = vad(audio_file)
-    asr(audio_file, periods)
+    print("VAD - Done.")
 
+    print("Processing ASR.")
+    subtitles = asr(audio_file, periods)
     os.remove(audio_file)
+    print("ASR - Done.")
+
+    print("Writing in the SRT file.")
+    srt(subtitles, srt_file)
+    print("SRT - Done.")
 
 
-main(video_file_speech)
+main(video_file)
