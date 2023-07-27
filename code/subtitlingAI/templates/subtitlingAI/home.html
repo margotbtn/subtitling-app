@@ -1,0 +1,23 @@
+{% extends 'subtitlingAI/base.html' %}
+
+{% load static %}
+{% load bootstrap5 %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h1 class="text-center mt-5">Subtitling by AI</h1>
+            <h2 class="text-center mb-4">A project by Margot Berton</h2>
+
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="mb-3">
+                    {{ form.as_p }}
+                </div>
+                <button type="submit" class="btn btn-primary">Download your subtitles</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -14,7 +14,6 @@ from moviepy.editor import VideoFileClip
 import os
 import torch
 import speech_recognition as sr
-import pprint
 
 
 #Configurations
@@ -23,11 +22,6 @@ model, utils = torch.hub.load(repo_or_dir='snakers4/silero-vad', model='silero_v
 (get_speech_timestamps, _, read_audio, _, _) = utils
 
 r = sr.Recognizer()
-
-
-#Variables
-video_file = "/home/margot/Portfolio/subtitling-app/Test/Dune.mp4"    #Dune ou EmmaWatson
-
 
 
 #---------------------------------------- Functions -----------------------------------------
@@ -77,38 +71,35 @@ def asr(audio_file, periods):
     #pprint.pprint(periods)
     return periods
 
-def srt(subtitles, srt_file):
+def write_in_srt(subtitles, srt_file):
     srt_content = ""
     for i, sub in enumerate(subtitles, start=1):
         start = format_time(sub['start'])
         end = format_time(sub['end'])
         text = sub['text']
         srt_content += f"{i}\n{start} --> {end}\n{text}\n\n"
+    
+    print("Writing in the SRT file.")
     with open(srt_file, 'w', encoding='utf-8') as f:
         f.write(srt_content)
+    print("SRT - Done.")
 
 
 #---------------------------------------- Main function -----------------------------------------
 
 def main(video_file):
-    base_path = os.path.splitext(video_file)[0]
-    audio_file = base_path + ".wav"
-    srt_file = base_path + ".srt"
+    audio_file = os.path.splitext(video_file)[0] + '.wav'
+    srt_file = os.path.join(os.path.expanduser('~'), 'Téléchargements', os.path.splitext(os.path.basename(video_file))[0] + '.srt')
 
     extract_audio(video_file, audio_file)
-
-    print("Processing VAD.")
+    
+    print('Processing VAD.')
     periods = vad(audio_file)
-    print("VAD - Done.")
-
-    print("Processing ASR.")
+    print('VAD - Done.')
+    
+    print('Processing ASR.')
     subtitles = asr(audio_file, periods)
     os.remove(audio_file)
-    print("ASR - Done.")
+    print('ASR - Done.')
 
-    print("Writing in the SRT file.")
-    srt(subtitles, srt_file)
-    print("SRT - Done.")
-
-
-main(video_file)
+    write_in_srt(subtitles, srt_file)

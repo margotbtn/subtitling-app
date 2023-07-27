@@ -1,0 +1,55 @@
+asgiref==3.7.2
+Bottleneck @ file:///work/ci_py311/bottleneck_1676827011612/work
+brotlipy==0.7.0
+certifi==2023.5.7
+cffi @ file:///work/ci_py311/cffi_1676822533496/work
+charset-normalizer @ file:///tmp/build/80754af9/charset-normalizer_1630003229654/work
+contourpy @ file:///work/ci_py311/contourpy_1676827066340/work
+cryptography @ file:///croot/cryptography_1686613057838/work
+cycler @ file:///tmp/build/80754af9/cycler_1637851556182/work
+decorator @ file:///opt/conda/conda-bld/decorator_1643638310831/work
+Django==4.2.3
+filelock @ file:///work/ci_py311/filelock_1676823024085/work
+fonttools==4.25.0
+gmpy2 @ file:///work/ci_py311/gmpy2_1676839849213/work
+idna @ file:///work/ci_py311/idna_1676822698822/work
+imageio @ file:///croot/imageio_1687264943895/work
+imageio-ffmpeg @ file:///home/conda/feedstock_root/build_artifacts/imageio-ffmpeg_1673483481485/work
+Jinja2 @ file:///work/ci_py311/jinja2_1676823587943/work
+kiwisolver @ file:///work/ci_py311/kiwisolver_1676827230232/work
+MarkupSafe @ file:///work/ci_py311/markupsafe_1676823507015/work
+matplotlib @ file:///croot/matplotlib-suite_1679593461707/work
+mkl-fft==1.3.6
+mkl-random @ file:///work/mkl/mkl_random_1682950433854/work
+mkl-service==2.4.0
+moviepy @ file:///home/conda/feedstock_root/build_artifacts/moviepy_1665160419595/work
+mpmath==1.2.1
+munkres==1.1.4
+networkx @ file:///croot/networkx_1678964333703/work
+numexpr @ file:///croot/numexpr_1683221822650/work
+numpy @ file:///croot/numpy_and_numpy_base_1687466208449/work
+packaging @ file:///croot/packaging_1678965309396/work
+pandas==1.5.3
+Pillow==9.4.0
+ply==3.11
+proglog==0.1.9
+pycparser @ file:///tmp/build/80754af9/pycparser_1636541352034/work
+pyOpenSSL @ file:///croot/pyopenssl_1678965284384/work
+pyparsing @ file:///work/ci_py311/pyparsing_1677811559502/work
+PyQt5-sip==12.11.0
+PySocks @ file:///work/ci_py311/pysocks_1676822712504/work
+python-dateutil @ file:///tmp/build/80754af9/python-dateutil_1626374649649/work
+pytz @ file:///work/ci_py311/pytz_1676825004346/work
+requests @ file:///croot/requests_1682607517574/work
+sip @ file:///work/ci_py311/sip_1676825117084/work
+six @ file:///tmp/build/80754af9/six_1644875935023/work
+SpeechRecognition @ file:///home/conda/feedstock_root/build_artifacts/speechrecognition_1678801698152/work
+sqlparse==0.4.4
+sympy @ file:///work/ci_py311_2/sympy_1679339311852/work
+toml @ file:///tmp/build/80754af9/toml_1616166611790/work
+torch==2.0.1
+torchaudio==2.0.2
+tornado @ file:///work/ci_py311/tornado_1676823418767/work
+tqdm @ file:///croot/tqdm_1679561862951/work
+typing_extensions @ file:///croot/typing_extensions_1686601443660/work
+urllib3 @ file:///croot/urllib3_1686163155763/work
