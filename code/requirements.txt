@@ -1,20 +1,24 @@
-asgiref==3.7.2
+asgiref @ file:///home/conda/feedstock_root/build_artifacts/asgiref_1685243452975/work
+beautifulsoup4 @ file:///home/conda/feedstock_root/build_artifacts/beautifulsoup4_1680888073205/work
 Bottleneck @ file:///work/ci_py311/bottleneck_1676827011612/work
 brotlipy==0.7.0
-certifi==2023.5.7
+certifi==2023.7.22
 cffi @ file:///work/ci_py311/cffi_1676822533496/work
 charset-normalizer @ file:///tmp/build/80754af9/charset-normalizer_1630003229654/work
 contourpy @ file:///work/ci_py311/contourpy_1676827066340/work
 cryptography @ file:///croot/cryptography_1686613057838/work
 cycler @ file:///tmp/build/80754af9/cycler_1637851556182/work
 decorator @ file:///opt/conda/conda-bld/decorator_1643638310831/work
-Django==4.2.3
+Django @ file:///home/conda/feedstock_root/build_artifacts/django_1688392128856/work
+django-bootstrap-v5==1.0.11
+django-bootstrap5 @ file:///home/conda/feedstock_root/build_artifacts/django-bootstrap5_1680795102796/work
 filelock @ file:///work/ci_py311/filelock_1676823024085/work
 fonttools==4.25.0
 gmpy2 @ file:///work/ci_py311/gmpy2_1676839849213/work
 idna @ file:///work/ci_py311/idna_1676822698822/work
 imageio @ file:///croot/imageio_1687264943895/work
 imageio-ffmpeg @ file:///home/conda/feedstock_root/build_artifacts/imageio-ffmpeg_1673483481485/work
+importlib-metadata @ file:///home/conda/feedstock_root/build_artifacts/importlib-metadata_1602263269022/work
 Jinja2 @ file:///work/ci_py311/jinja2_1676823587943/work
 kiwisolver @ file:///work/ci_py311/kiwisolver_1676827230232/work
 MarkupSafe @ file:///work/ci_py311/markupsafe_1676823507015/work
@@ -43,8 +47,9 @@ pytz @ file:///work/ci_py311/pytz_1676825004346/work
 requests @ file:///croot/requests_1682607517574/work
 sip @ file:///work/ci_py311/sip_1676825117084/work
 six @ file:///tmp/build/80754af9/six_1644875935023/work
+soupsieve @ file:///home/conda/feedstock_root/build_artifacts/soupsieve_1658207591808/work
 SpeechRecognition @ file:///home/conda/feedstock_root/build_artifacts/speechrecognition_1678801698152/work
-sqlparse==0.4.4
+sqlparse @ file:///home/conda/feedstock_root/build_artifacts/sqlparse_1681817562700/work
 sympy @ file:///work/ci_py311_2/sympy_1679339311852/work
 toml @ file:///tmp/build/80754af9/toml_1616166611790/work
 torch==2.0.1
@@ -53,3 +58,4 @@ tornado @ file:///work/ci_py311/tornado_1676823418767/work
 tqdm @ file:///croot/tqdm_1679561862951/work
 typing_extensions @ file:///croot/typing_extensions_1686601443660/work
 urllib3 @ file:///croot/urllib3_1686163155763/work
+zipp @ file:///home/conda/feedstock_root/build_artifacts/zipp_1689374466814/work
