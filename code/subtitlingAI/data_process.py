@@ -42,7 +42,7 @@ def format_time(seconds):
 def vad(audio_file):
     wav = read_audio(audio_file, sampling_rate=16000)
     speech_timestamps = get_speech_timestamps(wav, model, sampling_rate=16000, visualize_probs=True, return_seconds=True)
-
+    
     if len(speech_timestamps) >= 2:
         cur, next, last = 0, 1, len(speech_timestamps)-1
         while speech_timestamps[cur]['end'] < speech_timestamps[last]['end']:
@@ -53,6 +53,7 @@ def vad(audio_file):
             else:
                 cur += 1
                 next += 1
+
     return speech_timestamps    #renvoie une liste de dictionnaires (champs 'start' et 'end' : instants en secondes des plages
 
 def asr(audio_file, periods):
@@ -60,7 +61,7 @@ def asr(audio_file, periods):
     with file as source:
         r.adjust_for_ambient_noise(source, duration=0.5)
         for i in range(len(periods)):
-            offset = min(periods[i]['start'] - 0.5, 0)
+            offset = periods[i]['start'] - 0.5
             duration = periods[i]['end'] - periods[i]['start'] + 1
             audio = r.record(source, offset=offset, duration=duration)
             try:
@@ -68,7 +69,6 @@ def asr(audio_file, periods):
             except:
                 text = "[ASR not working]"
             periods[i]['text'] = text
-    #pprint.pprint(periods)
     return periods
 
 def write_in_srt(subtitles, srt_file):
