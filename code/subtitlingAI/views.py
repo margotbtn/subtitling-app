@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from subtitlingAI.forms import VideoFileForm
 from subtitlingAI.models import VideoFile
-from subtitlingAI.data_process import main
-import os, shutil
+from subtitlingAI.ML.data_process import main
+import shutil
 
 
 def home(request):
