@@ -17,7 +17,7 @@ Outils au choix pour ASR :
 from moviepy.editor import VideoFileClip
 import os
 import torch
-from asr import asr_web_speech, asr_cloud_speech
+from subtitlingAI.ML.asr import asr_web_speech, asr_cloud_speech
 
 
 #Variables
@@ -54,7 +54,7 @@ def generate_subtitles(audio_file):
     periods = vad(audio_file)
     for i, period in enumerate(periods, start=1):
         period['id'] = i
-        period['text'] = asr_cloud_speech(audio_file, period['start'], period['end'])   #Choose your ASR function
+        period['text'] = asr_web_speech(audio_file, period['start'], period['end'])   #Choose your ASR function
     return periods
 
 def write_in_srt(subtitles, srt_file):
@@ -85,5 +85,3 @@ def main(video_file):
     print("Writing in the SRT file.")
     write_in_srt(subtitles, srt_file)
     print("SRT - Done.")
-
-main(video_file)

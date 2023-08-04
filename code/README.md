@@ -11,3 +11,11 @@ Objectif : générer automatiquement des sous-titres (IA) pour une vidéo situé
 	- django-bootstrap5
 * Se positionner dans code, et taper la commande : python manage.py runserver
 * Aller à l'URL home/
+
+
+## A faire :
+* Déployer une VM
+* Choisir le répertoire de téléchargement du SRT
+* Eviter de sauvegarder en base de données le form
+* Améliorer HTML/CSS
+* Messages flash pour indiquer processing et fichier généré/sauvegardé
