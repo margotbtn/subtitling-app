@@ -13,9 +13,24 @@ Objectif : générer automatiquement des sous-titres (IA) pour une vidéo situé
 * Aller à l'URL home/
 
 
-## A faire :
+## Choix du modèle ASR
+
+Différents outils d'ASR ont étés testés, à savoir :
+- Google Web Speech
+- Google Cloud Speech
+Le code a approfondi l'utilisation de Google Cloud Speech. Si toutefois l'utilisateur souhaite utiliser un autre mode, il faut changer 
+
+
+## A faire côté Django
 * Déployer une VM
 * Choisir le répertoire de téléchargement du SRT
-* Eviter de sauvegarder en base de données le form
 * Améliorer HTML/CSS
 * Messages flash pour indiquer processing et fichier généré/sauvegardé
+
+## A faire côté Data process
+* Gérer automatiquement erreurs liés à Google Storage (il faut vider le bucket)
+
+* Commenter tout le code
+* Gérer accès au projet (si trop d'utilisateurs utilisent mon projet -> surcoût Google Cloud, mêmes noms de vidéos uploadées en même temps ?)
+* Rapport FR et EN (à faire relire par papa)
+* Réfléchir à mon propre modèle ?

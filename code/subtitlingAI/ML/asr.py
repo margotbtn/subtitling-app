@@ -7,6 +7,9 @@ Commentaires :
 Outils au choix pour ASR :
     - Web Speech API (web_speech)
     - Google Cloud Speech (cloud_speech)
+
+Pour Google Cloud Speech, nécessaire d'avoir lancé une fois au préalable le script create_google_recognizer (et d'avoir complété
+en fonction son id dans la fonction asr_cloud_speech).
 """
 
 
@@ -18,18 +21,22 @@ from pydub import AudioSegment
 import os
 
 
+#Variables
+project_id = project_id='158846036087'
+
+
 #---------------------------------------- Google Web Speech API -----------------------------------------
 
 def asr_web_speech(audio_file, start, end):
     r = sr.Recognizer()
     file = sr.AudioFile(audio_file)
-    offset = start - 0.5
-    duration = end - start + 1
+    offset = start - 0.1
+    duration = end - start + 0.2
     with file as source:
         r.adjust_for_ambient_noise(source, duration=0.5)
         audio = r.record(source, offset=offset, duration=duration)
         try:
-            text = r.recognize_google(audio)    #paramètre show_all=True pour renvoyer JSON string avec toutes les possibilités
+            text = r.recognize_google(audio)
         except:
             text = '[ASR not working]'
     return text
@@ -37,7 +44,10 @@ def asr_web_speech(audio_file, start, end):
 
 #---------------------------------------- Google Cloud Speech -----------------------------------------
 
-def transcribe_feature_in_recognizer(project_id: str, recognizer_id: str, audio_file: str) -> cloud_speech.RecognizeResponse:
+def transcribe_file_v2(
+    project_id: str,
+    audio_file: str,
+) -> cloud_speech.RecognizeResponse:
     # Instantiates a client
     client = SpeechClient()
 
@@ -45,8 +55,18 @@ def transcribe_feature_in_recognizer(project_id: str, recognizer_id: str, audio_
     with open(audio_file, "rb") as f:
         content = f.read()
 
+    config = cloud_speech.RecognitionConfig(
+        auto_decoding_config=cloud_speech.AutoDetectDecodingConfig(),
+        language_codes=["en-US"],
+        model="long",
+        features=cloud_speech.RecognitionFeatures(
+                    enable_automatic_punctuation=True,
+                ),
+    )
+
     request = cloud_speech.RecognizeRequest(
-        recognizer=f"projects/{project_id}/locations/global/recognizers/{recognizer_id}",
+        recognizer=f"projects/{project_id}/locations/global/recognizers/_",
+        config=config,
         content=content,
     )
 
