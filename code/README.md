@@ -16,9 +16,9 @@ Objectif : générer automatiquement des sous-titres (IA) pour une vidéo situé
 ## Choix du modèle ASR
 
 Différents outils d'ASR ont étés testés, à savoir :
-- Google Web Speech
-- Google Cloud Speech
-Le code a approfondi l'utilisation de Google Cloud Speech. Si toutefois l'utilisateur souhaite utiliser un autre mode, il faut changer 
+	- Google Web Speech
+	- Google Cloud Speech
+Le code a approfondi l'utilisation de Google Cloud Speech. Si toutefois l'utilisateur souhaite utiliser un autre mode, il faut changer la variable asr_function dans le fichier ./subtitlingAI/ML/data_process.py.
 
 
 ## A faire côté Django
