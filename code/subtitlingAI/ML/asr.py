@@ -7,9 +7,6 @@ Commentaires :
 Outils au choix pour ASR :
     - Web Speech API (web_speech)
     - Google Cloud Speech (cloud_speech)
-
-Pour Google Cloud Speech, nécessaire d'avoir lancé une fois au préalable le script create_google_recognizer (et d'avoir complété
-en fonction son id dans la fonction asr_cloud_speech).
 """
 
 
@@ -19,10 +16,6 @@ from google.cloud.speech_v2 import SpeechClient
 from google.cloud.speech_v2.types import cloud_speech
 from pydub import AudioSegment
 import os
-
-
-#Variables
-project_id = project_id='158846036087'
 
 
 #---------------------------------------- Google Web Speech API -----------------------------------------
@@ -58,7 +51,7 @@ def transcribe_file_v2(
     config = cloud_speech.RecognitionConfig(
         auto_decoding_config=cloud_speech.AutoDetectDecodingConfig(),
         language_codes=["en-US"],
-        model="long",
+        model="latest_long",
         features=cloud_speech.RecognitionFeatures(
                     enable_automatic_punctuation=True,
                 ),
@@ -94,6 +87,6 @@ def asr_cloud_speech(audio_file, start, end):
         return (asr_cloud_speech(audio_file, start, start+60) + asr_cloud_speech(audio_file, start+60, end))
     else:
         audio_file_cut = cut_audio(audio_file, start, end)
-        text = transcribe_feature_in_recognizer(project_id='158846036087', recognizer_id='recognizer-en-long-punc', audio_file=audio_file_cut)
+        text = transcribe_file_v2(project_id='158846036087', audio_file=audio_file_cut)
         os.remove(audio_file_cut)
         return text

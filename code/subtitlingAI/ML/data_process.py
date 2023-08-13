@@ -6,10 +6,6 @@ Commentaires :
 
 Si erreur "qt.qpa.plugin: Could not find the Qt platform plugin "wayland" in "" " : taper dans le terminal
 "export QT_QPA_PLATFORM=xcb".
-
-Outils au choix pour ASR :
-    - Web Speech API (web_speech)
-    - Google Cloud Speech (cloud_speech)
 """
 
 
@@ -18,11 +14,6 @@ from moviepy.editor import VideoFileClip
 import os
 import torch
 from subtitlingAI.ML.asr import asr_web_speech, asr_cloud_speech    #Valeurs possibles prises par asr_function
-
-
-#Variables
-video_file='/home/margot/Projets/subtitling-app/video_test/EmmaWatson.mp4'
-asr_function = asr_cloud_speech     #asr_function(audio_file: str, startTime: str, endTime: str) -> str
 
 
 #Configurations
@@ -55,7 +46,7 @@ def generate_subtitles(audio_file):
     periods = vad(audio_file)
     for i, period in enumerate(periods, start=1):
         period['id'] = i
-        period['text'] = asr_function(audio_file, period['start'], period['end'])
+        period['text'] = asr_cloud_speech(audio_file, period['start'], period['end'])
     return periods
 
 def write_in_srt(subtitles, srt_file):
