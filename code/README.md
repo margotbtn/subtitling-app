@@ -24,13 +24,11 @@ Le code a approfondi l'utilisation de Google Cloud Speech. Si toutefois l'utilis
 ## A faire côté Django
 * Déployer une VM
 * Choisir le répertoire de téléchargement du SRT
-* Améliorer HTML/CSS
-* Messages flash pour indiquer processing et fichier généré/sauvegardé
+* Messages flash pour indiquer processing et fichier généré/sauvegardé et formulaire non valide
 
 ## A faire côté Data process
-* Gérer automatiquement erreurs liés à Google Storage (il faut vider le bucket)
+* Améliorer le modèle déjà existant !!!
 
 * Commenter tout le code
 * Gérer accès au projet (si trop d'utilisateurs utilisent mon projet -> surcoût Google Cloud, mêmes noms de vidéos uploadées en même temps ?)
 * Rapport FR et EN (à faire relire par papa)
-* Réfléchir à mon propre modèle ?

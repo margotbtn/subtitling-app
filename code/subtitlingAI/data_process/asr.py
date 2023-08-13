@@ -82,11 +82,20 @@ def cut_audio(audio_file, start, end):
     audio_cut.export(audio_file_cut, format="wav")
     return audio_file_cut
 
-def asr_cloud_speech(audio_file, start, end):
+def asr_cloud_speech(audio_file, start, end, project_id):
     if end - start > 60:
         return (asr_cloud_speech(audio_file, start, start+60) + asr_cloud_speech(audio_file, start+60, end))
     else:
         audio_file_cut = cut_audio(audio_file, start, end)
-        text = transcribe_file_v2(project_id='158846036087', audio_file=audio_file_cut)
+        text = transcribe_file_v2(project_id=project_id, audio_file=audio_file_cut)
         os.remove(audio_file_cut)
         return text
+
+
+#---------------------------------------- ASR function -----------------------------------------
+
+#Change asr_cloud_speech by another asr tool of your choice
+def asr(audio_file_path, speech_timestamps, project_id):
+    for period in speech_timestamps:
+        period['text'] = asr_cloud_speech(audio_file_path, period['start'], period['end'], project_id)
+    return speech_timestamps
