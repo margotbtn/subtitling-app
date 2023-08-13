@@ -31,7 +31,7 @@ def asr_web_speech(audio_file, start, end):
         try:
             text = r.recognize_google(audio)
         except:
-            text = '[ASR not working]'
+            pass
     return text
 
 

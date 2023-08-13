@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from subtitlingAI.forms import VideoFileForm
 from subtitlingAI.models import VideoFile
-from code.subtitlingAI.ML.data_process_withoutVAD import main
+from subtitlingAI.ML.data_process import main
 import shutil, os
 
 
