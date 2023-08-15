@@ -2,27 +2,35 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from subtitlingAI.forms import VideoFileForm
 from subtitlingAI.models import VideoFile
-from subtitlingAI.data_process import main
-import os, shutil
+from subtitlingAI.data_process.transcription import main
+import shutil
 
+def clean_database():
+    n = VideoFile.objects.count()
+    if n > 0:
+        db = VideoFile.objects.all()
+        for i in range(n):
+            db[0].delete()
 
-def delete_temp():
-        if os.path.exists('documents/'):
-            shutil.rmtree('documents/')
-        n = VideoFile.objects.count()
-        while n > 0:
-            v = VideoFile.objects.all()[0]
-            v.delete()
-
-def home(request):
-    delete_temp()
+def index(request):
+    clean_database()
     if request.method == "POST":
         form = VideoFileForm(request.POST, request.FILES)
         if form.is_valid():
-            v = form.save()
-            main(v.video_file.path)
-            delete_temp()
+            video = form.save()
+            main(video.google_project_id, video.video_file.path, video.transcription_language)
+            video.delete()
+            shutil.rmtree(f'uploaded/{video.google_project_id}')
+            messages.success(request, "Successful download.")
+            return redirect('index')
+        else:
+            messages.warning(request, "Form not valid. Are the Google Project ID and the extension format of the video correct?")
+            return redirect('index')
     form = VideoFileForm()
     return render(request,
-                  'subtitlingAI/home.html',
+                  'subtitlingAI/index.html',
                   {'form': form})
+
+def about(request):
+    return render(request,
+                  'subtitlingAI/about.html')
