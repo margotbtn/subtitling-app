@@ -7,7 +7,7 @@ class VideoFile(models.Model):
         ENGLISH = 'EN'
         FRENCH = 'FR'
         SPANISH = 'ES'
-    
+
     google_project_id = models.fields.CharField(default='158846036087', max_length=100, validators=[validate_google_project_id])
     video_file = models.FileField(upload_to=f'uploaded/', validators=[validate_file_extension])
     transcription_language = models.fields.CharField(choices=Language.choices, max_length=5, default='EN')

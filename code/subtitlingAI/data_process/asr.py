@@ -96,6 +96,5 @@ def asr_cloud_speech(audio_file, start, end, google_project_id):
 
 #Change asr_cloud_speech by another asr tool of your choice
 def asr(audio_file_path, speech_timestamps, google_project_id):
-    for period in speech_timestamps:
-        period['text'] = asr_cloud_speech(audio_file_path, period['start'], period['end'], google_project_id)
-    return speech_timestamps
+    for interval in speech_timestamps:
+        interval['text'] = asr_cloud_speech(audio_file_path, interval['start'], interval['end'], google_project_id)

@@ -4,7 +4,6 @@
 
 from google.cloud import translate
 
-
 def detect_language(text, project_id):
     
     client = translate.TranslationServiceClient()

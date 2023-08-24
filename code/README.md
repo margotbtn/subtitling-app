@@ -9,7 +9,7 @@ Objectif : générer automatiquement des sous-titres (IA) pour une vidéo situé
 * Il est nécessaire d'avoir les dépendances requises, définies dans requirements.txt, notamment :
 	- django
 	- django-bootstrap5
-* Se positionner dans code, et taper la commande : python manage.py runserver
+* Se positionner dans le répertoire subtitling-app, et taper la commande : python manage.py runserver
 * Aller à l'URL home/
 
 Google Project ID
@@ -22,11 +22,7 @@ Différents outils d'ASR ont étés testés, à savoir :
 	- Google Cloud Speech
 
 
-## A faire côté Django
-* Déployer une VM
-
-## A faire côté Data process
-* Améliorer le modèle déjà existant
+## TODO
 
 * Commenter tout le code
 * Rapport FR et EN (à faire relire par papa)

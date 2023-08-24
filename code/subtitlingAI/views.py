@@ -22,10 +22,9 @@ def index(request):
             video.delete()
             shutil.rmtree(f'uploaded/{video.google_project_id}')
             messages.success(request, "Successful download.")
-            return redirect('index')
         else:
             messages.warning(request, "Form not valid. Are the Google Project ID and the extension format of the video correct?")
-            return redirect('index')
+        return redirect('index')
     form = VideoFileForm()
     return render(request,
                   'subtitlingAI/index.html',

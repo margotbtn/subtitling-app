@@ -4,6 +4,10 @@
 * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-personal/blob/master/LICENSE)
 */
 // This file is intentionally blank
+<<<<<<< HEAD
 // Use this file to add JavaScript to your project
 
 
+=======
+// Use this file to add JavaScript to your project
+>>>>>>> 32f845439acadfde8a38a6ff204f8deaddad8cb1
