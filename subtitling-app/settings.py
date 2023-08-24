@@ -52,7 +52,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'subtitlingAI_project.urls'
+ROOT_URLCONF = 'subtitling-app.urls'
 
 TEMPLATES = [
     {
@@ -71,7 +71,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'subtitlingAI_project.wsgi.application'
+WSGI_APPLICATION = 'subtitling-app.wsgi.application'
 
 
 # Database
