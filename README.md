@@ -1,33 +1,26 @@
-# Subtitles by AI - Application Web de Margot Berton
+# AI-generated Subtitles - Web Application by Margot Berton
 
-Dernière mise à jour : 24/08/2023
-Suivi de projet dans le dossier doc (version anglaise et française)
+Last update: 08/25/2023
 
 
-## Dépendances et exigences
+## Dependencies and Requirements
 
-* Certaines dépendances sont requises ; se référer à requirements.txt si besoin.
-* Il est souhaitable d'avoir un Google Project ID, avec les autorisations suivantes :
-	- Administrateur Cloud Speech
-	- Administrateur de l'API Cloud Translation
+* Some dependencies are required; refer to requirements.txt if needed.
+* It is desirable to have a Google Project ID, with the following permissions:
+	- Cloud Speech Administrator
+	- Cloud Translation API Administrator
 	- Cloud Infrastructure Manager Admin
-	- Administrateur Storage
-  et avec les APIs suivantes :
-  	- Cloud Speech-To-Text API
+	- Storage Administrator
+  and with the following APIs:
+  	- Cloud Speech-to-Text API
   	- Cloud Translation API
   	- Cloud Resource Manager API
   	- Cloud Storage API
-  Sinon : utiliser le Google Project ID entré par défaut.
+  Otherwise: use the default entered Google Project ID.
 
 
-## Exécution de l'application
+## Running the Application
 
-Se positionner dans le répertoire du projet et exécuter run.sh.
-
-
-
-
-## TODO
-
-* Commenter tout le code
-* Rapport FR et EN (à faire relire par papa)
+1. Navigate to the project directory: cd <path-to-subtitling-app>/subtitling-app
+2. Launch the Django application: python manage.py runserver
+3. Go to the index URL/
