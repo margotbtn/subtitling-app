@@ -65,21 +65,21 @@ def widen_time_intervals(intervals: list, duration: float) -> list:
     n = len(intervals)
 
     if n>0:
-        #Merge intervals that are closer than 2 seconds and add a margin of 1 seconds before/after
+        #Merge intervals that are closer than 1 second and add a margin of 0.5 seconds before/after
         cur, next = 0, 1
         for i in range(n):
             if i < n-1:
-                if new_intervals[next]['start'] - new_intervals[cur]['end'] > 2:
-                    new_intervals[cur]['start'] = max(0, new_intervals[cur]['start']-1)
-                    new_intervals[cur]['end'] = min(duration, new_intervals[cur]['end']+1)
+                if new_intervals[next]['start'] - new_intervals[cur]['end'] > 1:
+                    new_intervals[cur]['start'] = max(0, new_intervals[cur]['start']-0.5)
+                    new_intervals[cur]['end'] = min(duration, new_intervals[cur]['end']+0.5)
                     cur += 1
                     next += 1
                 else:
                     new_intervals[cur]['end'] = new_intervals[next]['end']
                     del(new_intervals[next])
             else:
-                new_intervals[-1]['start'] = max(0, new_intervals[-1]['start']-1)
-                new_intervals[-1]['end'] = min(duration, new_intervals[-1]['end']+1)
+                new_intervals[-1]['start'] = max(0, new_intervals[-1]['start']-0.5)
+                new_intervals[-1]['end'] = min(duration, new_intervals[-1]['end']+0.5)
         
         #Keep the indices of the original intervals contained within in a field called 'sub_intervals'
         cursor = 0
