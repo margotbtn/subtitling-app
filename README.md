@@ -1,25 +1,30 @@
 # Subtitles by AI - Application Web de Margot Berton
 
-Dernière mise à jour : 27/07/2023
-Objectif : générer automatiquement des sous-titres (IA) pour une vidéo située localement sur l'ordinateur
+Dernière mise à jour : 24/08/2023
+Suivi de projet dans le dossier doc (version anglaise et française)
 
 
-## Exécuter l'application
+## Dépendances et exigences
 
-* Il est nécessaire d'avoir les dépendances requises, définies dans requirements.txt, notamment :
-	- django
-	- django-bootstrap5
-* Se positionner dans le répertoire subtitling-app, et taper la commande : python manage.py runserver
-* Aller à l'URL home/
+* Certaines dépendances sont requises ; se référer à requirements.txt si besoin.
+* Il est souhaitable d'avoir un Google Project ID, avec les autorisations suivantes :
+	- Administrateur Cloud Speech
+	- Administrateur de l'API Cloud Translation
+	- Cloud Infrastructure Manager Admin
+	- Administrateur Storage
+  et avec les APIs suivantes :
+  	- Cloud Speech-To-Text API
+  	- Cloud Translation API
+  	- Cloud Resource Manager API
+  	- Cloud Storage API
+  Sinon : utiliser le Google Project ID entré par défaut.
 
-Google Project ID
+
+## Exécution de l'application
+
+Se positionner dans le répertoire du projet et exécuter run.sh.
 
 
-## Choix du modèle ASR
-
-Différents outils d'ASR ont étés testés, à savoir :
-	- Google Web Speech
-	- Google Cloud Speech
 
 
 ## TODO
