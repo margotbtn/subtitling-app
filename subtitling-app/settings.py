@@ -26,7 +26,14 @@ SECRET_KEY = 'django-insecure-^9d)0edisn8*+#@njc&!q+5g(3y(f=!k-y)b4li@8$rk6%nzee
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.34.125.170.239']
+ALLOWED_HOSTS = ['.34.125.170.239', '34.125.121.154']
+
+# Add to project/settings.py
+SECURE_HSTS_SECONDS = 30  # Unit is seconds; *USE A SMALL VALUE FOR TESTING!*
+SECURE_HSTS_PRELOAD = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
 
 
 # Application definition
@@ -119,7 +126,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = "/var/www/subtitling-app/static"
+STATICFILES_DIRS = [BASE_DIR,  "subtitlingAI/static"]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
