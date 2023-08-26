@@ -1,5 +1,5 @@
 """
-WSGI config for subtitlingAI_project project.
+WSGI config for subtitlingAI-app project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
