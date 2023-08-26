@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-^9d)0edisn8*+#@njc&!q+5g(3y(f=!k-y)b4li@8$rk6%nzee
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.34.125.170.239', '34.125.121.154']
+ALLOWED_HOSTS = ['34.125.195.162']
 
 # Add to project/settings.py
 SECURE_HSTS_SECONDS = 30  # Unit is seconds; *USE A SMALL VALUE FOR TESTING!*
