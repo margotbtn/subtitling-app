@@ -23,4 +23,7 @@ Last update: 08/25/2023
 
 1. Navigate to the project directory: cd <path-to-subtitling-app>/subtitling-app
 2. Launch the Django application: python manage.py runserver
-3. Go to the index URL/
+
+OR
+
+1. Go to the URL http://34.125.27.232
