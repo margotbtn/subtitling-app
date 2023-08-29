@@ -19,8 +19,8 @@ def index(request):
         form = VideoFileForm(request.POST, request.FILES)
         if form.is_valid():
             video = form.save()
-            srt_content = main(video.google_project_id, video.video_file.path, video.transcription_language)
             video_name = os.path.splitext(os.path.basename(video.video_file.path))[0]
+            srt_content = main(video.google_project_id, video.video_file.path, video.transcription_language)
             video.delete()
             shutil.rmtree(f'uploaded/{video.google_project_id}')
             response = HttpResponse(srt_content, content_type='application/octet-stream')
