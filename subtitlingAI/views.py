@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.http import HttpResponse
 from subtitlingAI.forms import VideoFileForm
 from subtitlingAI.models import VideoFile
 from subtitlingAI.data_process.transcription import main
@@ -18,13 +19,15 @@ def index(request):
         form = VideoFileForm(request.POST, request.FILES)
         if form.is_valid():
             video = form.save()
-            main(video.google_project_id, video.video_file.path, video.transcription_language)
+            srt_content = main(video.google_project_id, video.video_file.path, video.transcription_language)
             video.delete()
             shutil.rmtree(f'uploaded/{video.google_project_id}')
-            messages.success(request, "Successful download.")
+            response = HttpResponse(srt_content, content_type='application/octet-stream')
+            response['Content-Disposition'] = 'attachment; filename="sous-titres.srt"'
+            return response
         else:
             messages.warning(request, "Form not valid. Are the Google Project ID and the extension format of the video correct?")
-        return redirect('index')
+            return redirect('index')
     form = VideoFileForm()
     return render(request,
                   'subtitlingAI/index.html',

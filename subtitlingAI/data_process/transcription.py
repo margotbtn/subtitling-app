@@ -167,13 +167,14 @@ def generate_subtitles(audio_file_path: str, duration: float, google_project_id:
     return speech_timestamps
 
 
-def write_in_srt(subtitles: list, srt_file_path: str):
+def format_for_srt(subtitles: list) -> str:
     """
     Writes subtitles into an SRT file.
 
     Args:
         subtitles (list): List of subtitles (dict with 'id', 'start', 'end', and 'text').
-        srt_file_path (str): Path to save the SRT file.
+    Returns:
+        str: String of subtitles formated for SRT file.
     """
     srt_content = ""
     for subtitle in subtitles:
@@ -182,11 +183,10 @@ def write_in_srt(subtitles: list, srt_file_path: str):
         end = format_time(subtitle['end'])
         text = subtitle['text']
         srt_content += f"{id}\n{start} --> {end}\n{text}\n\n"
-    with open(srt_file_path, 'w', encoding='utf-8') as f:
-        f.write(srt_content)
+    return srt_content
 
 
-def main(google_project_id: str, video_file_path: str, required_lang: str):
+def main(google_project_id: str, video_file_path: str, required_lang: str) -> str:
     """
     Main function to automate the subtitling process.
 
@@ -194,10 +194,10 @@ def main(google_project_id: str, video_file_path: str, required_lang: str):
         google_project_id (str): Google Cloud project ID for ASR and translation.
         video_file_path (str): Path to the input video file.
         required_lang (str): Desired language for translation.
+    Returns:
+        str: String of subtitles formated for SRT file.
     """
     audio_file_path = os.path.splitext(video_file_path)[0] + '.wav'
-    srt_file_path = os.path.join(os.path.expanduser('~'), 'Téléchargements', os.path.splitext(os.path.basename(video_file_path))[0] + '.srt')
-
     duration = extract_audio(video_file_path, audio_file_path)
     
     print(f'Transcription')
@@ -208,6 +208,8 @@ def main(google_project_id: str, video_file_path: str, required_lang: str):
     translated_subtitles = translation(subtitles, required_lang, google_project_id)
     print('Translation - Done.')
 
-    print("Writing in the SRT file.")
-    write_in_srt(translated_subtitles, srt_file_path)
+    print("Formatting for the SRT file.")
+    srt_content = format_for_srt(translated_subtitles)
     print("SRT - Done.")
+
+    return srt_content
