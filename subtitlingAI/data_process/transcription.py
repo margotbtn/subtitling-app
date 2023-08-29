@@ -159,9 +159,21 @@ def generate_subtitles(audio_file_path: str, duration: float, google_project_id:
         list: List of generated subtitles.
     """
     speech_timestamps = vad(audio_file_path)
+
+    #Add segments for long ranges
+    n = len(speech_timestamps)
+    i = 0
+    while i < n:
+        if speech_timestamps[i]['end'] - speech_timestamps[i]['start'] > 6:
+            speech_timestamps.insert(i, {'start': speech_timestamps[i]['start'], 'end': speech_timestamps[i]['start']+6})
+            speech_timestamps[i+1]['start'] += 6
+            n += 1
+        i += 1
+
     wide_speech_timestamps = widen_time_intervals(speech_timestamps, duration)
     asr(audio_file_path, wide_speech_timestamps, google_project_id)
     text_distribution(speech_timestamps, wide_speech_timestamps)
+    
     for i, period in enumerate(speech_timestamps, start=1):
         period['id'] = i
     return speech_timestamps
