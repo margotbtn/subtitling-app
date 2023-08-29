@@ -6,6 +6,8 @@ wsgi_app = "subtitling-app.wsgi:application"
 loglevel = "debug"
 # The number of worker processes for handling requests
 workers = 2
+# The max duration for handling request
+timeout = 1200
 # The socket to bind
 bind = "0.0.0.0:8000"
 # Restart workers when code changes (development only!)

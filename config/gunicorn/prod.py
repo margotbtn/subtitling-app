@@ -6,6 +6,8 @@ import multiprocessing
 wsgi_app = "subtitling-app.wsgi:application"
 # The number of worker processes for handling requests
 workers = multiprocessing.cpu_count() * 2 + 1
+# The max duration for handling request
+timeout = 1200
 # The socket to bind
 bind = "0.0.0.0:8000"
 # Write access and error info to /var/log
