@@ -27,4 +27,4 @@ NB: The application uses several Google APIs and is deployed on a Google VM. All
 
 OR
 
-1. Go to the URL http://34.125.27.232 (available by October 30, 2023).
+1. Go to the URL http://34.16.168.10/ (available by October 30, 2023).
