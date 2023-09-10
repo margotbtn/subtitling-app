@@ -1,6 +1,7 @@
 # AI-generated Subtitles - Web Application by Margot Berton
 
 Last update: 08/25/2023
+
 NB: The application uses several Google APIs and is deployed on a Google VM. All these services depend on a free trial to Google Cloud, which will end on October 30, 2023.
 
 
@@ -12,7 +13,9 @@ NB: The application uses several Google APIs and is deployed on a Google VM. All
 	- Cloud Translation API Administrator
 	- Cloud Infrastructure Manager Admin
 	- Storage Administrator
+	
   and the following APIs:
+  
   	- Cloud Speech-to-Text API
   	- Cloud Translation API
   	- Cloud Resource Manager API
